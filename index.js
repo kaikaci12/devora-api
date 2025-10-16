@@ -2,7 +2,7 @@ import e from "express"
 import dotenv from "dotenv"
 import { userRouter } from "./routes/router.js"
 import cors from "cors"
-import appendColumns from "./services/google_sheets/google_sheets.service.js"
+
 
 dotenv.config()
 
