@@ -27,12 +27,16 @@ async function registerService(req, res) {
         `📩 **New registration from ${name}** :\nPhone: ${phoneNumber}\nEmail: ${email}`
       );
     }
-
+  
   } catch (err) {
     console.error("Failed to send registration message to Discord:", err);
   }
-  
-  await sendMail(email)
+  try {
+    await sendMail(email)
+  } catch (error) {
+    console.error("Failed to send confirmation email:", error);
+  }
+
   return res.status(201).json({ message: "Register Successful" });
 }
 
