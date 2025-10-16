@@ -14,8 +14,8 @@
   },
   "type": "module",
   "scripts": {
-  
-    "start": "nodemon index.js"
+    "build": "echo \"No build step needed\"",
+    "start": "node index.js"
   
   },
   "devDependencies": {
