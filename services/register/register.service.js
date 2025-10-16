@@ -2,7 +2,7 @@ import { getClient, isClientReady } from "../../bot/bot.js";
 import sendMail from "../mailer/mailer.js";
 
 async function registerService(req, res) {
-
+  const { name, phoneNumber, email } = req.body;
 
   // Example: forward registration to a configured Discord channel
   const REGISTERED_STUDENTS_CHANNEL_ID = process.env.REGISTERED_STUDENTS_CHANNEL_ID;
@@ -21,12 +21,13 @@ async function registerService(req, res) {
 
   try {
     const channel = await client.channels.fetch(REGISTERED_STUDENTS_CHANNEL_ID);
+    
     if (channel && typeof channel.send === "function") {
       await channel.send(
         `📩 **New registration from ${name}** :\nPhone: ${phoneNumber}\nEmail: ${email}`
       );
     }
-    
+
   } catch (err) {
     console.error("Failed to send registration message to Discord:", err);
   }
